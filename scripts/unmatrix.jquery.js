@@ -68,7 +68,7 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
 
         // Convert values to floats. 
         for (var i = 0, l = values.length; i < l; i++) {
-            values[i] = parseFloat(values[i]);
+            values[i] = parseFloat(values[i]).toFixed(2);
         }
 
         // For the unmatrix function matrix columns become arrays. 

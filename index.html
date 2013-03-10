@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>Unmatrix</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style>
+            .shape1 {
+                background-color: blue;
+                height: 50px;
+                position: absolute;
+                width: 50px;
+                transform: scale(2,3) translate(50px,50px) skewX(30deg) skewY(15deg) rotate(45deg);
+            }
+            
+            .shape2 {
+                background-color: red;
+                height: 50px;
+                opacity: .5;
+                position: absolute;
+                width: 50px;
+            }
+        </style>
+    	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="scripts/sylvester-0.1.3.js"></script>
+        <script src="scripts/unmatrix.jquery.js"></script>
+    	<script>
+            (function($) {
+                $(document).ready(function() {
+                    var transforms = $(".shape1").unmatrix();
+                    var transform = transforms[0];
+
+                    var cssTransform = 
+                    "translate(" +
+                        transform.x + "px," + 
+                        transform.y + "px) " +
+                    "rotate(" +
+                        transform.rotate + "deg) " +
+                    "skew(" +
+                        transform.skew + "deg) " +
+                    "scale(" + 
+                        transform.scaleX + "," + 
+                        transform.scaleY + ")";
+                    
+                    $(".shape2").css("transform", cssTransform);
+
+                });
+            })(jQuery);
+    	</script>
+    </head>
+    <body>
+        <div class="shape1"></div>
+        <div class="shape2"></div>
+    </body>
+</html>
