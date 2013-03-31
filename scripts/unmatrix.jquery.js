@@ -34,8 +34,10 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
             if (affix in style) {
                 return affix;
             } else {
+                // Uppercase the first letter of affix.
+                affix = affix.replace(/\b\w/, affix.charAt(0).toUpperCase());
                 for (var i = 0, l = prefixes.length; i < l; i++) {
-                    var prefixed = prefixes[i] + affix.replace(/\b\w/, affix.charAt(0).toUpperCase());
+                    var prefixed = prefixes[i] + affix;
                     if (prefixed in style) {
                         return prefixed;
                     }
@@ -50,7 +52,7 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
             transforms = new Array();
             this.each(function() {
                 var cssTransform = $(this).css(property);
-                var transform = cssTransform != "none" ? getTransform(cssTransform): null;
+                var transform = cssTransform != "none" ? getTransform(cssTransform) : null;
                 transforms.push(transform);
             });
             return transforms;
@@ -60,7 +62,7 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
     // Returns an object with transform properties.
     function getTransform(cssTransform) {
         // Check if transform is 3d.
-        var is3d = Boolean(cssTransform.match(/^matrix3d/));
+        var is3d = Boolean(cssTransform.match(/matrix3d/));
 
         // Convert matrix values to array.
         cssTransform = cssTransform.match(/\(([\d\.\,\s-]+)\)/)[1];
@@ -71,24 +73,21 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
             values[i] = parseFloat(values[i]).toFixed(2);
         }
 
-        // For the unmatrix function matrix columns become arrays. 
-        if (is3d) {
-            // Create 4x4 3d matrix.
-            var matrix = [
-                [values[0], values[1], values[2], values[3]],
-                [values[4], values[5], values[6], values[7]],
-                [values[8], values[9], values[10], values[11]],
-                [values[12], values[13], values[14], values[15]]];
-            return unmatrix(matrix);
-        } else {
-            // Create 4x4 2d matrix.
-            var matrix = [
-                [values[0], values[1], 0, 0],
-                [values[2], values[3], 0, 0],
-                [0, 0, 1, 0],
-                [values[4], values[5], 0, 1]];
-            return unmatrix(matrix);
-        }
+        // Matrix columns become arrays.
+        // Create 4x4 3d matrix.
+        var matrix = is3d ? [
+            [values[0], values[1], values[2], values[3]],
+            [values[4], values[5], values[6], values[7]],
+            [values[8], values[9], values[10], values[11]],
+            [values[12], values[13], values[14], values[15]]]
+        // Create 4x4 2d matrix.
+        : [
+            [values[0], values[1], 0, 0],
+            [values[2], values[3], 0, 0],
+            [0, 0, 1, 0],
+            [values[4], values[5], 0, 1]];
+
+        return unmatrix(matrix);
     }
 
     // Returns null if the matrix cannot be decomposed, an object if it can.
@@ -205,9 +204,9 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
         if (dot(row[0], pdum3) < 0) {
             for (var i = 0; i < 3; i++) {
                 scaleX *= -1;
-                row[i][0] *= -1
-                row[i][1] *= -1
-                row[i][2] *= -1
+                row[i][0] *= -1;
+                row[i][1] *= -1;
+                row[i][2] *= -1;
             }
         }
 
