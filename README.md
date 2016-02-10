@@ -12,16 +12,8 @@ $(function() {
 The plugin returns an array of objects if the browser supports transform, or 
 null if it doesn't. Each item in the array can be either an empty array if the 
 element has no transforms, or an object with the following properties: 
-```rotate,``` 
-```rotateX```, 
-```rotateY```, 
-```rotateZ```, 
-```scaleX```, 
-```scaleY```, 
-```scaleZ```, 
-```skew```, 
-```skewX```, 
-```skewY```, 
+```rotate```, ```rotateX```, ```rotateY```, ```rotateZ```, ```scaleX```, 
+```scaleY```, ```scaleZ```, ```skew```, ```skewX```, ```skewY```, 
 ```translateX```,
 ```translateY```, 
 ```translateZ```. 
