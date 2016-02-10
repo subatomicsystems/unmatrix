@@ -3,33 +3,35 @@
     <head>
     	<title>Unmatrix</title>
     	<meta charset="utf-8" />
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/main.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="js/sylvester/sylvester_0.1.3.js"></script>
         <script src="js/jquery.unmatrix.js"></script>
     </head>
     <body>
         <div class="transform1">CSS transforms (original)</div>
         <div class="transform2">Decomposed matrix values</div>
-    	<script>
-            $(function () {
-                var transforms = $(".transform1").unmatrix();
-                var transform = transforms[0];
-                
-                var cssTransform = 
-                "translate(" +
-                    transform.translateX + "px," + 
-                    transform.translateY + "px) " +
-                "rotate(" +
-                    transform.rotate + "deg) " +
-                "skew(" +
-                    transform.skew + "deg) " +
-                "scale(" + 
-                    transform.scaleX + "," + 
-                    transform.scaleY + ")";
+        <code>
+            <script>
+                $(function () {
+                    var transform = $(".transform1").unmatrix()[0];
 
-                $(".transform2").css("transform", cssTransform);
-            });
-    	</script>
+                    var cssTransform = 
+                        "translate(" +
+                            transform.translateX + "px," + 
+                            transform.translateY + "px) " +
+                        "rotate(" +
+                            transform.rotate + "deg) " +
+                        "skew(" +
+                            transform.skew + "deg) " +
+                        "scale(" + 
+                            transform.scaleX + "," + 
+                            transform.scaleY + ")";
+
+                    $(".transform2").css("transform", cssTransform);
+                });
+            </script>
+        </code>
     </body>
 </html>

@@ -1,4 +1,4 @@
-Unmatrix is a jQuery plugin that decomposes a CSS transform matrix back into 
+Unmatrix is a jQuery plugin that decomposes a CSS transform matrix into 
 intelligible values.
 
 ###Usage:
@@ -9,9 +9,10 @@ $(function() {
 });
 ```
 
-The plugin returns an array of objects if the browser supports transform, or 
-null if it doesn't. Each item in the array can be either an empty array if the 
-element has no transforms, or an object with the following properties: 
+The plugin returns an array of objects if the browser supports transforms, or 
+```false``` if it doesn't. Each item in the array can be either an empty 
+object if the element has no transforms, or an object with the following 
+properties: 
 ```rotate```, ```rotateX```, ```rotateY```, ```rotateZ```, ```scaleX```, 
 ```scaleY```, ```scaleZ```, ```skew```, ```skewX```, ```skewY```, 
 ```translateX```, ```translateY```, ```translateZ```. 
