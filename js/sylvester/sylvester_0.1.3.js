@@ -20,7 +20,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-(function(window) {
+(function (window) {
     var Sylvester = {
         version: "0.1.3",
         precision: 1e-6
@@ -1254,6 +1254,6 @@
     Sylvester.P = Sylvester.Plane   = Plane.create;
     Sylvester.V = Sylvester.Vector  = Vector.create;
     
-    // Make Sylvester available in global scope.
+    // Make Sylvester available in the global scope.
     window.Sylvester = Sylvester;
 })(window);

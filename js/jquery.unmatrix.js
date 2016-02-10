@@ -1,30 +1,3 @@
-/*
-Copyright (c) 2013 Stanislav Sopov
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
-associated documentation files (the "Software"), to deal in the Software without restriction, 
-including without limitation the rights to use, copy, modify, merge, publish, distribute, 
-sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is 
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or 
-substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT 
-NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
-DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT 
-OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
-
-/*
-NOTE: When interpolating between 2 matrices, each is decomposed into the corresponding translation, 
-rotation, scale, skew and perspective values. Not all matrices can be accurately described by these 
-values. Those that can't are decomposed into the most accurate representation possible. This 
-technique works on a 4x4 homogeneous matrix. For more information see 
-http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
-*/
-
 (function($, S) {
     $.fn.unmatrix = function() {
         var property = (function() {
@@ -52,12 +25,12 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
             transforms = new Array();
             this.each(function() {
                 var cssTransform = $(this).css(property);
-                var transform = cssTransform != "none" ? getTransform(cssTransform) : null;
+                var transform = cssTransform !== "none" ? getTransform(cssTransform) : null;
                 transforms.push(transform);
             });
             return transforms;
         }
-    }
+    };
 
     // Returns an object with transform properties.
     function getTransform(cssTransform) {
@@ -101,12 +74,12 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
         var skew;
         var skewX;
         var skewY;
-        var x; 
-        var y;
-        var z;
+        var translateX; 
+        var translateY;
+        var translateZ;
 
         // Normalize the matrix.
-        if (matrix[3][3] == 0) {
+        if (matrix[3][3] === 0) {
             return null;
         }
 
@@ -126,13 +99,13 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
 
         perspectiveMatrix[3][3] = 1;
 
-        if (determinant(perspectiveMatrix) == 0) {
+        if (determinant(perspectiveMatrix) === 0) {
            return null;
         }
 
         // First, isolate perspective.
         var perspective;
-        if (matrix[0][3] != 0 || matrix[1][3] != 0 || matrix[2][3] != 0) {
+        if (matrix[0][3] !== 0 || matrix[1][3] !== 0 || matrix[2][3] !== 0) {
             // rightHandSide is the right hand side of the equation.
             var rightHandSide = new Array();
             rightHandSide[0] = matrix[0][3];
@@ -156,11 +129,11 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
         }
 
         // Next take care of translation.
-        x = matrix[3][0];
+        translateX = matrix[3][0];
         //matrix[3][0] = 0;
-        y = matrix[3][1];
+        translateY = matrix[3][1];
         //matrix[3][1] = 0;
-        z = matrix[3][2];
+        translateZ = matrix[3][2];
         //matrix[3][2] = 0;
 
         // Now get scale and shear. 'row' is a 3 element array of 3 component vectors.
@@ -231,9 +204,9 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
             skew: deg(skew),
             skewX: deg(skewX), 
             skewY: deg(skewY),
-            x: x, 
-            y: y,
-            z: z, 
+            translateX: translateX, 
+            translateY: translateY,
+            translateZ: translateZ
         };
     }
 
@@ -287,7 +260,7 @@ http://dev.w3.org/csswg/css3-transforms/#matrix-decomposing
         result[0] = (ascl * a[0]) + (bscl * b[0]);
         result[1] = (ascl * a[1]) + (bscl * b[1]);
         // Both vectors are 3d. Return a 3d vector. 
-        if (a.length == 3 && b.length == 3) {
+        if (a.length === 3 && b.length === 3) {
             result[2] = (ascl * a[2]) + (bscl * b[2]);
         }
         return result;
