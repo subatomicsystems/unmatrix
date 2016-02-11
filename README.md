@@ -1,7 +1,9 @@
+###About
+
 Unmatrix is a jQuery plugin that decomposes a CSS transform matrix into 
 intelligible values.
 
-###Usage:
+###Usage
 
 ```
 $(function() {
@@ -17,7 +19,7 @@ properties:
 ```scaleY```, ```scaleZ```, ```skew```, ```skewX```, ```skewY```, 
 ```translateX```, ```translateY```, ```translateZ```. 
 
-###Note:
+###Note
 
 The plugin uses James Coglan's awesome library 
 [Sylvester](http://sylvester.jcoglan.com/) with a few minor modifications, hence 
