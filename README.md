@@ -25,7 +25,7 @@ The plugin uses James Coglan's awesome library
 [Sylvester](http://sylvester.jcoglan.com/) with a few minor modifications, hence 
 it's included with the rest of the code.
 
-When interpolating between 2 matrices, each is decomposed into the corresponding 
+When interpolating between two matrices, each is decomposed into the corresponding 
 translation, rotation, scale, skew and perspective values. Not all matrices can 
 be accurately described by these values. Those that can't are decomposed into 
 the most accurate representation possible. This technique works on a 4x4 
