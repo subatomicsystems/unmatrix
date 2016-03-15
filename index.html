@@ -12,26 +12,24 @@
     <body>
         <div class="transform1">CSS transforms (original)</div>
         <div class="transform2">Decomposed matrix values</div>
-        <code>
-            <script>
-                $(function () {
-                    var transform = $(".transform1").unmatrix()[0];
+        <script>
+            $(function () {
+                var transform = $(".transform1").unmatrix()[0];
 
-                    var cssTransform = 
-                        "translate(" +
-                            transform.translateX + "px," + 
-                            transform.translateY + "px) " +
-                        "rotate(" +
-                            transform.rotate + "deg) " +
-                        "skew(" +
-                            transform.skew + "deg) " +
-                        "scale(" + 
-                            transform.scaleX + "," + 
-                            transform.scaleY + ")";
+                var cssTransform = 
+                    "translate(" +
+                        transform.translateX + "px," + 
+                        transform.translateY + "px) " +
+                    "rotate(" +
+                        transform.rotate + "deg) " +
+                    "skew(" +
+                        transform.skew + "deg) " +
+                    "scale(" + 
+                        transform.scaleX + "," + 
+                        transform.scaleY + ")";
 
-                    $(".transform2").css("transform", cssTransform);
-                });
-            </script>
-        </code>
+                $(".transform2").css("transform", cssTransform);
+            });
+        </script>
     </body>
 </html>
