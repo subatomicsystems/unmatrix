@@ -1,0 +1,30 @@
+{
+  "name": "unmatrix",
+  "version": "1.0.0",
+  "description": "Get individual transformation values from an element",
+  "main": "js/jquery.unmatrix.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/subatomicsystems/unmatrix.git"
+  },
+  "keywords": [
+    "unmatrix",
+    "transformations",
+    "transform",
+    "translate",
+    "scale",
+    "skew",
+    "rotate",
+    "rotation",
+    "translation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/subatomicsystems/unmatrix/issues"
+  },
+  "homepage": "https://github.com/subatomicsystems/unmatrix#readme"
+}
