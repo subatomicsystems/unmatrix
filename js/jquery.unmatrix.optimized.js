@@ -625,22 +625,7 @@
         return unmatrix(matrix);
     };
 
-    window.unmatrix = function () {
-        if (!transformProperty) {
-            // Browser does not support transforms
-            return false;
-        } else {
-            // Browser supports transforms
-            var transforms = [];
-
-            this.each(function (index, element) {
-                var cssTransform = $(element).css(transformProperty);
-                var transform = cssTransform !== "none" ?
-                  getTransform(cssTransform) :
-                {};
-                transforms.push(transform);
-            });
-            return transforms;
-        }
+    window.unmatrix = function (cssTransform) {
+        return cssTransform !== 'none' ? getTransform(cssTransform) : {};
     };
 })(window);
